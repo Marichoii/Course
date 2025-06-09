@@ -1,132 +1,1056 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Studio Ghibli</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studio Ghibli</title>
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="icon" type="image/x-icon" href="assets/images/tumblr_7b920f3952a70952faa58afbab3b57f5_a294b9b5_250.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Inter:wght@300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
     body {
-      font-family: "Poppins", sans-serif;
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        scroll-behavior: smooth;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: auto auto;
-      padding: 10px;
-      
-    }
-
-    .container-hero {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 10%;
+    :root {
+        --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        --dark-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
     }
 
     .hero-section {
-      background-image: url('assets/images/wp10166954-ponyo-desktop-wallpapers.png');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      padding: 100px 0;
-      text-align: center;
+        background: var(--dark-gradient);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
     }
 
-    .hero-section h1 {
-      font-size: 3rem;
-      font-weight: 700;
+    .hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(120, 219, 255, 0.3) 0%, transparent 50%);
     }
 
-    .hero-section p {
-      font-size: 1.25rem;
-      margin-bottom: 20px;
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
     }
 
-    .hero-section a.btn {
-      background-color: #ef476f;
-      color: white;
-
-      padding: 15px 50px;
-      font-size: 1.25rem;
-      border-radius: 20px;
-      transition: background-color 0.3s ease;
+    .hero-content {
+        position: relative;
+        z-index: 2;
     }
 
-    .hero-section a.btn:hover {
-      background-color: #1d3557;
-      color: white;
-
+    .hero-title {
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 900;
+        background: linear-gradient(45deg, #fff, #f0f8ff, #e6f3ff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        animation: glow 2s ease-in-out infinite alternate;
     }
 
-    header {
-      background-color: #f8f9fa;
-      padding: 20px 0;
+    .hero-content p {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.8);
+        margin-bottom: 2rem;
     }
 
-    header h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
+    @keyframes glow {
+        from {
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+        }
+
+        to {
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.6));
+        }
     }
 
-    header nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
+    .glass-card {
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     }
 
-    header nav ul li {
-      margin-right: 20px;
+    .navbar {
+        background: rgba(26, 26, 46, 0.95) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
     }
 
-  </style>
-</head>
+    .navbar-brand {
+        font-weight: 900;
+        font-size: 1.8rem;
+        background: white;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .nav-link {
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background: var(--primary-gradient);
+        transition: all 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+        width: 100%;
+        left: 0;
+    }
+
+    .card-actor {
+        background: var(--glass-bg);
+        border: none;
+        border-radius: 25px;
+        box-shadow:
+            20px 20px 60px #d1d9e6,
+            -20px -20px 60px #ffffff;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .card-actor::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+        transition: left 0.5s;
+    }
+
+    .card-actor:hover::before {
+        left: 100%;
+    }
+
+    .card-actor:hover {
+        transform: translateY(-15px) scale(1.02);
+        box-shadow:
+            25px 25px 80px #d1d9e6,
+            -25px -25px 80px #ffffff,
+            0 0 50px rgba(102, 126, 234, 0.3);
+    }
+
+    .actor-avatar {
+        width: 120px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .actor-avatar::before {
+        content: '';
+        position: absolute;
+        inset: 3px;
+        border-radius: 50%;
+        z-index: 1;
+    }
+
+    .actor-avatar i {
+        position: relative;
+        z-index: 2;
+        color: #667eea;
+    }
+
+    .section-title {
+        font-size: 3rem;
+        font-weight: 800;
+        background: var(--primary-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        margin-bottom: 4rem;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: var(--secondary-gradient);
+        border-radius: 2px;
+    }
+
+    .carousel-inner {
+        border-radius: 30px;
+        overflow: hidden;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 60px;
+        height: 60px;
+        background: var(--primary-gradient);
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .carousel-control-prev:hover,
+    .carousel-control-next:hover {
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .carousel-control-prev {
+        left: -30px;
+    }
+
+    .carousel-control-next {
+        right: -30px;
+    }
+
+    .nav-pills .nav-link {
+        background: transparent;
+        border: 2px solid #e9ecef;
+        color: #6c757d;
+        font-weight: 600;
+        padding: 15px 30px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-pills .nav-link.active {
+        background: var(--primary-gradient);
+        border-color: transparent;
+        color: white;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+    }
+
+    .accordion-item {
+        border: none;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .accordion-button {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        border: none;
+        font-weight: 600;
+        padding: 20px 25px;
+        border-radius: 15px;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background: var(--primary-gradient);
+        color: white;
+        box-shadow: none;
+    }
+
+    .accordion-body {
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+        padding: 25px;
+        font-weight: 500;
+    }
+
+    .modal-content {
+        border: none;
+        border-radius: 25px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+    }
+
+    .modal-header {
+        background: var(--dark-gradient);
+        border: none;
+        padding: 25px;
+    }
+
+    .modal-title {
+        color: white;
+        font-weight: 700;
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        padding: 30px;
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    }
+
+    .form-control {
+        border: 2px solid #e9ecef;
+        border-radius: 15px;
+        padding: 15px 20px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+
+    .btn-danger {
+        background: var(--secondary-gradient);
+        border: none;
+        padding: 15px;
+        border-radius: 15px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+
+    .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(245, 87, 108, 0.4);
+    }
+
+    .list-group-item {
+        border: none;
+        padding: 20px 25px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .list-group-item:hover {
+        background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+        transform: translateX(10px);
+    }
+
+    .floating-btn {
+        width: 70px;
+        height: 70px;
+        background: var(--primary-gradient);
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    .floating-btn:hover {
+        transform: scale(1.1) rotate(360deg);
+        box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+    }
+
+    .offcanvas {
+        border: none;
+        background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    }
+
+    .offcanvas-header {
+        background: var(--dark-gradient);
+        border: none;
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-slide-up {
+        animation: slideInUp 0.8s ease-out;
+    }
+
+    .badge {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        border-radius: 25px;
+    }
+
+    .badge.bg-warning {
+        background: var(--primary-gradient) !important;
+        color: white !important;
+    }
+
+    .badge.bg-info {
+        background: var(--secondary-gradient) !important;
+        color: #1a1a2e !important;
+    }
+
+    .badge.bg-success {
+        background: var(--dark-gradient) !important;
+    }
+
+    footer {
+        background: var(--dark-gradient);
+        position: relative;
+        overflow: hidden;
+    }
+
+    footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    }
+
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            display: none;
+        }
+    }
+
+    .scroll-reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease;
+    }
+
+    .scroll-reveal.revealed {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background-color: rgba(26, 26, 46, 0.95);
+            padding: 1rem;
+            border-radius: 0 0 10px 10px;
+        }
+    }
+</style>
 
 <body>
-  <header class="bg-light py-3">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-center">
-        <a href="#" class="text-decoration-none text-dark">
-          <h1 class="h4">Studio Ghibli</h1>
-        </a>
-        <nav>
-          <ul class="nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <section class="hero-section">
-    <div class="container-hero">
-      <div class="row">
-        <div class="col-lg-8 mx-auto">
-          <a href="login.html" class="btn btn-primary btn-lg">Login</a>
-
+    <div class="modal fade" id="loginModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fa-solid fa-fish"></i></i>
+                        Login
+                    </h5>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-4">
+                            <label for="email" class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="seu@email.com" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="password" class="form-label fw-semibold">Password</label>
+                            <input type="password" class="form-control" id="password" placeholder="••••••••" required>
+                        </div>
+                        <div class="mb-4 form-check">
+                            <input type="checkbox" class="form-check-input" id="remember">
+                            <label class="form-check-label fw-medium" for="remember">
+                                Remind-me
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-danger w-100">
+                            Enter
+                        </button>
+                    </form>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                Ponyo
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#sinopse">Synopsis</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#elenco">Cast</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#personagens">Characters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#curiosidades">Curiosities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trilha">Soundtrack</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto hero-content text-center text-white">
+                    <h1 class="hero-title mb-4">崖の上の<br>ポニョ</h1>
+                    <p class="lead mb-5 fs-5 fw-light opacity-90">
+                        <strong>Ponyo</strong> is a heartwarming animated film by Studio Ghibli, 
+                        directed by Hayao Miyazaki. It tells the story of a magical goldfish who dreams 
+                        of becoming human. After meeting a kind boy named Sosuke, Ponyo uses her powers to transform into a little girl. However, her actions disturb the balance of nature, causing chaos between the sea and the land. Together, Ponyo and Sosuke must restore harmony in this enchanting tale of love, friendship, and the wonder of childhood.
+
+
+                    </p>
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <span class="badge bg-warning fs-5">2008</span>
+                        <span class="badge bg-info fs-5"> Fantasy • Adventure </span>
+                        <span class="badge bg-success fs-5">1h 43min</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sinopse" class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title scroll-reveal">Synopsis</h2>
+                    <div class="glass-card p-5 scroll-reveal">
+                        <p class="fs-6 text-muted text-center mb-0 lh-lg">
+                            <strong>Ponyo</strong> is a beautifully animated fantasy film by legendary director Hayao
+                            Miyazaki.
+                            It follows the story of a magical goldfish named Ponyo who lives beneath the sea with
+                            her father, a once-human ocean sorcerer named Fujimoto. Curious about the human world,
+                            Ponyo escapes from her underwater home and ends up in a small coastal town, where she
+                            is rescued by a kind-hearted five-year-old boy named Sosuke. The two quickly form a deep
+                            bond, and Ponyo decides she wants to become human and live on land with Sosuke.
+                            However, Ponyo’s transformation is no ordinary event—it causes a dangerous imbalance in
+                            the natural world. The moon begins to draw closer to Earth, the oceans rise, and strange
+                            ancient sea creatures reawaken. As the environment shifts into chaos, Sosuke must prove
+                            the strength of his love and trust in Ponyo to restore harmony between land and sea.
+                            With its stunning hand-drawn animation, moving musical score by Joe Hisaishi, and themes
+                            of childhood innocence, environmental balance, and unconditional love, <strong>Ponyo stands
+                                as a
+                                timeless tale for audiences of all ages.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="elenco" class="py-5" style="background: linear-gradient(135deg, #ffffff, #f8f9fa);">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Cast</h2>
+            <div id="carouselElenco" class="carousel slide scroll-reveal" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselElenco" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carouselElenco" data-bs-slide-to="1"></button>
+                </div>
+
+                <div class="carousel-inner p-4">
+                    <!-- Slide 1 -->
+                    <div class="carousel-item active">
+                        <div class="row g-4">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/ponyo.jpg" alt="Yuria Nara"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">Yuria Nara</h5>
+                                        <p class="card-text text-muted fw-medium">Ponyo</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-danger">Leading Actress</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/sosuke.jpg" alt="Hiroki Doi"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">Hiroki Doi</h5>
+                                        <p class="card-text text-muted fw-medium">Sōsuke</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-primary">Leading Actor</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/Lisa.jpg" alt="Tomoko Yamaguchi"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">Tomoko Yamaguchi</h5>
+                                        <p class="card-text text-muted fw-medium">Lisa</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-dark">Sōsuke's Mom</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="row g-4">
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/koichi.jpg" Kazushige Nagashima"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">Kazushige Nagashima</h5>
+                                        <p class="card-text text-muted fw-medium">Kōichi</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-warning text-dark">Sōsuke's Dad</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/Fujimoto.jpg" alt="George Tokoro"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">George Tokoro</h5>
+                                        <p class="card-text text-muted fw-medium">Fujimoto</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-success">Ponyo's Dad</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6">
+                                <div class="card card-actor h-100">
+                                    <div class="card-body text-center p-4">
+                                        <div class="actor-avatar mb-3">
+                                            <img src="assets/images/granmamare, ponyos mother.jpg" alt="Yuki Amami"
+                                                class="rounded-circle img-fluid"
+                                                style="width: 100px; height: 100px; object-fit: cover;">
+                                        </div>
+                                        <h5 class="card-title fw-bold mb-2">Yuki Amami</h5>
+                                        <p class="card-text text-muted fw-medium">Granmamare</p>
+                                        <div class="mt-3">
+                                            <span class="badge bg-info">Ponyo's Mom</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselElenco"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselElenco"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="personagens" class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Worlds</h2>
+            <ul class="nav nav-pills nav-justified mb-5 scroll-reveal" id="personagensTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="herois-tab" data-bs-toggle="pill" data-bs-target="#herois"
+                        type="button" role="tab">
+                        <i class="fa-solid fa-wand-sparkles"></i> Magical Ocean
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="viloes-tab" data-bs-toggle="pill" data-bs-target="#viloes"
+                        type="button" role="tab">
+                        <i class="fa-solid fa-person"></i> Human World
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content scroll-reveal" id="personagensTabContent">
+                <div class="tab-pane fade show active" id="herois" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="glass-card h-100 p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle bg-danger me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 60px; height: 60px;">
+                                        <i class="fa-solid fa-fish text-white fs-4"></i>
+                                    </div>
+                                    <h5 class="card-title mb-0 fw-bold">Ponyo</h5>
+                                </div>
+                                <p class="card-text fw-medium">
+                                    A magical goldfish with a curious spirit. After meeting Sosuke, she wishes to become
+                                    human and live on land. Her transformation triggers powerful natural changes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="glass-card h-100 p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle bg-primary me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 60px; height: 60px;">
+                                        <i class="fa-solid fa-child text-white fs-4"></i>
+                                    </div>
+                                    <h5 class="card-title mb-0 fw-bold">Sosuke</h5>
+                                </div>
+                                <p class="card-text fw-medium">
+                                    A kind and brave five-year-old boy who finds Ponyo near the shore. He protects her
+                                    and promises to take care of her no matter what.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="viloes" role="tabpanel">
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="glass-card h-100 p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle bg-info me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 60px; height: 60px;">
+                                        <i class="fa-solid fa-hat-wizard text-white fs-4"></i>
+                                    </div>
+                                    <h5 class="card-title mb-0 fw-bold">Fujimoto</h5>
+                                </div>
+                                <p class="card-text fw-medium">
+                                    Ponyo’s eccentric father, a former human turned ocean sorcerer. He’s overprotective
+                                    of Ponyo and wary of the human world.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="glass-card h-100 p-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="rounded-circle bg-secondary me-3 d-flex align-items-center justify-content-center"
+                                        style="width: 60px; height: 60px;">
+                                        <i class="fa-solid fa-water text-white fs-4"></i>
+                                    </div>
+                                    <h5 class="card-title mb-0 fw-bold">Granmamare</h5>
+                                </div>
+                                <p class="card-text fw-medium">
+                                    Ponyo’s serene and powerful mother, goddess of the sea. She respects Ponyo’s wishes
+                                    and helps maintain the balance between land and ocean.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="curiosidades" class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Curiosities</h2>
+            <div class="accordion scroll-reveal" id="curiosidadesAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading1">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                            It’s almost entirely hand-drawn
+                        </button>
+                    </h2>
+                    <div id="collapse1" class="accordion-collapse collapse show" aria-labelledby="heading1"
+                        data-bs-parent="#curiosidadesAccordion">
+                        <div class="accordion-body">
+                            Ponyo contains approximately 170,000 individual frames, and nearly all of them were
+                            drawn by hand. Hayao Miyazaki, known for his commitment to traditional animation,
+                            insisted on minimal computer graphics to maintain a tactile, organic feel.
+                            Even complex sequences—like the ocean waves or Ponyo’s transformations—were manually
+                            animated,
+                            giving the film its signature warmth and expressiveness.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            Inspired by The Little Mermaid
+                        </button>
+                    </h2>
+                    <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2"
+                        data-bs-parent="#curiosidadesAccordion">
+                        <div class="accordion-body">
+                            In Ponyo, the sea doesn’t just serve as background—it behaves like a living being.
+                            The waves react emotionally: calm when Ponyo is at peace, violent when the balance
+                            between worlds is disturbed. This choice gives nature a central, almost spiritual
+                            presence in the film, emphasizing Miyazaki’s deep respect for the environment.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading3">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            Ponyo has hundreds of sisters
+                        </button>
+                    </h2>
+                    <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3"
+                        data-bs-parent="#curiosidadesAccordion">
+                        <div class="accordion-body">
+                            In the opening sequence, Ponyo swims with her countless little sisters—tiny magical
+                            goldfish.
+                            Each one was animated by hand, which made this one of the most time-consuming scenes to
+                            produce,
+                            but it contributes to the dreamlike quality of the film.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="heading4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                            The sea is treated like a living character
+                        </button>
+                    </h2>
+                    <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4"
+                        data-bs-parent="#curiosidadesAccordion">
+                        <div class="accordion-body">
+                            The story was inspired by Hans Christian Andersen’s The Little Mermaid, but Miyazaki
+                            reinterprets it through a lens of childhood innocence, environmental consciousness,
+                            and wonder. Instead of romance, Ponyo focuses on pure friendship, the harmony between
+                            humans and nature, and the beauty of transformation.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="trilha" class="py-5" style="background: linear-gradient(135deg, #f8f9fa, #ffffff);">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">Soundtrack</h2>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="glass-card p-4 scroll-reveal">
+                        <p class="fs-5 text-muted mb-4">
+                            Ponyo's soundtrack, composed by Joe Hisaishi, blends whimsical melodies with powerful
+                            orchestral themes.
+                            It captures the magic and emotion of the story, from playful moments to the grandeur of the
+                            sea. The theme song,
+                            “Ponyo on the Cliff by the Sea”, became a hit in Japan and reflects the film’s joyful
+                            spirit.
+                        </p>
+                        <div class="d-flex justify-content-center">
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#trilhaModal">
+                                <i class="fas fa-play me-2"></i>Hear Soundtrack
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trilha-sonora">
+        <div class="modal fade" id="trilhaModal" tabindex="-1" aria-labelledby="trilhaModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="trilhaModalLabel">Soundtrack</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body" style="font-size: 0.9rem;">
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://www.youtube.com/embed/eonlC5Z9mTY?si=KmFLvufKmZsSWF23"
+                                title="YouTube video player" frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                            </iframe>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <a href="https://youtu.be/eonlC5Z9mTY?si=qa36I5DvsvpBLyRL" class="btn btn-danger"
+                            target="_blank">
+                            Hear on YouTube
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="py-5">
+        <div class="container text-center">
+            <p class="mb-0 text-white">
+                &copy; 2025 Studio Ghibli. All rights reserved.
+            </p>
+            <p class="text-muted mt-2">
+                By Maria Eduarda de Moura Eguchi
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        });
+
+        document.querySelectorAll('.scroll-reveal').forEach(function (element) {
+            element.classList.add('revealed');
+        });
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            console.log('Email:', email);
+            console.log('Senha:', password);
+
+            var loginModal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
+            loginModal.hide();
+        });
+
+        document.querySelectorAll('.scroll-reveal').forEach(function (element) {
+            element.classList.add('revealed');
+        });
+        document.querySelector('.floating-btn').addEventListener('click', function () {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        var carouselElenco = new bootstrap.Carousel(document.getElementById('carouselElenco'), {
+            interval: 5000,
+            wrap: true
+        });
+
+        document.querySelectorAll('.accordion-button').forEach(function (button) {
+            button.addEventListener('click', function () {
+                this.classList.toggle('collapsed');
+                var content = this.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                }
+            });
+        });
+
+        document.querySelector('.btn-danger').addEventListener('click', function () {
+            var trilhaModal = new bootstrap.Modal(document.getElementById('trilhaModal'));
+            trilhaModal.show();
+        });
+
+        document.querySelector('.btn-primary').addEventListener('click', function () {
+            var trailerModal = new bootstrap.Modal(document.getElementById('trailerModal'));
+            trailerModal.show();
+        });
+
+        document.querySelector('.nav-link[data-bs-target="#loginModal"]').addEventListener('click', function () {
+            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+            loginModal.show();
+        });
+    </script>
 </body>
 
 </html>
